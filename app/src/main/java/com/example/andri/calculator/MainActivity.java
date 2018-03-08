@@ -6,15 +6,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Arrays;
 
+public class MainActivity extends AppCompatActivity {
+    public String[] arrays;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         final TextView value = findViewById(R.id.value);
-        TextView act = findViewById(R.id.act);
+        final TextView act = findViewById(R.id.act);
         TextView result = findViewById(R.id.result);
 
         findViewById(R.id.button1).setOnClickListener(new View.OnClickListener() {
@@ -94,6 +97,35 @@ public class MainActivity extends AppCompatActivity {
                                                           }
                                                       }
         );
+
+
+
+        findViewById(R.id.button_bs).setOnClickListener(new View.OnClickListener() {
+                                                             @Override
+                                                             public void onClick(View view) {
+                                                                 int pos = value.getText().length();
+                                                                 value.setText(removeCharAt(
+                                                                         (String) value.getText(), pos-1));
+                                                             }
+                                                         }
+        );
+
+        findViewById(R.id.button_plus).setOnClickListener(new View.OnClickListener() {
+                                                             @Override
+                                                             public void onClick(View view) {
+                                                                 arrays = new String[]{(String) value.getText()};
+
+                                                                 act.setText(arrays[0]);
+                                                                 value.setText("+");
+                                                             }
+                                                         }
+        );
+
+
+    }
+
+    public static String removeCharAt(String s, int pos) {
+        return s.substring(0, pos) + s.substring(pos + 1);
     }
 }
 
